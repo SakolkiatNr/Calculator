@@ -1,23 +1,19 @@
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
+const operators = {
+    add:        function(a, b) { return a + b ;},
+    subtract:   function(a, b) { return a - b ;},
+    multiply:   function(a, b) { return a * b ;},
+    divide:     function(a, b) { return a / b ;},
 }
 
 function operate(a, b, operator) {
-    return operator(a, b)
+    console.log(operator(a,b));
+    return operator(a, b);
 }
-const numberDisplay = document.querySelector('.number-display');
+
+// operate(5,20, operators.add);
+// operate(5,20, operators.subtract);
+// operate(5,20, operators.multiply); 
+// operate(5,20, operators.divide); 
 
 function updateNumberDisplay() {
     const numberButtons = document.querySelectorAll('.number');
@@ -43,23 +39,33 @@ function updateNumberDisplay() {
     });
 }
 
+const numberDisplay = document.querySelector('.number-display');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// input number
+// if operator is being clicked
+    // store number in variable 1
+    // if input different number
+        // reset number display
+        // update number display
+// if operator is being clicked again
+    // store number in variable 2
+        // proceed the operation
+        // update number display
+// if = is being pressed
+    // store number in variable 2
+        // proceed the operation
+        // update number display
+const operatorButtons = document.querySelectorAll('.operator');
+let numbers = [];
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        numbers.push(+numberDisplay.textContent);
+        button.classList.toggle('activate');
+        
+        console.log(numbers);
+    });
+});
 
 
 
