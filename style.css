@@ -1,0 +1,13 @@
+.buttons-container {
+    display: flex; 
+    flex-direction: row;
+}
+.number-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.operator-buttons {
+    display: flex;
+    flex-direction: column;
+}
