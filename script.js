@@ -14,9 +14,9 @@ function operate(a, b, operator) {
 // operate(5,20, operators.subtract);
 // operate(5,20, operators.multiply); 
 // operate(5,20, operators.divide); 
+const numberButtons = document.querySelectorAll('.number');
 
 function updateNumberDisplay() {
-    const numberButtons = document.querySelectorAll('.number');
 
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
@@ -34,6 +34,11 @@ function updateNumberDisplay() {
                 button.value !== '0' && button.value !== '.') {
                     numberDisplay.textContent = "";
                 }
+
+            if (operatorStatus) {
+                numberDisplay.textContent = "";
+                operatorStatus = false;
+            }
             numberDisplay.textContent += button.value; 
         })
     });
@@ -48,6 +53,7 @@ const numberDisplay = document.querySelector('.number-display');
     // if input different number
         // reset number display
         // update number display
+        // toggle off operator
 // if operator is being clicked again
     // store number in variable 2
         // proceed the operation
@@ -58,12 +64,16 @@ const numberDisplay = document.querySelector('.number-display');
         // update number display
 const operatorButtons = document.querySelectorAll('.operator');
 let numbers = [];
+let operatorStatus = false;
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         numbers.push(+numberDisplay.textContent);
-        button.classList.toggle('activate');
-        
         console.log(numbers);
+
+        // toggle operator mode
+        operatorButtons.forEach(btn => btn.classList.remove('activate'));
+        button.classList.add('activate');
+        operatorStatus = true;
     });
 });
 
