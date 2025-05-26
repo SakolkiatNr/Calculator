@@ -17,11 +17,11 @@ function divide(a, b) {
 function operate(a, b, operator) {
     return operator(a, b)
 }
-
 const numberDisplay = document.querySelector('.number-display');
-const numberButtons = document.querySelectorAll('.number');
 
 function updateNumberDisplay() {
+    const numberButtons = document.querySelectorAll('.number');
+
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
             // If default number already 0
@@ -42,4 +42,25 @@ function updateNumberDisplay() {
         })
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 updateNumberDisplay();
