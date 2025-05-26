@@ -11,3 +11,17 @@
     display: flex;
     flex-direction: column;
 }
+
+button {
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+}
+
+.display {
+}
+
+.number-display {
+    color: red;
+    font-size: 100px;
+}
