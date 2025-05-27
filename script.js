@@ -6,18 +6,15 @@ const operators = {
 }
 
 function operate(a, b, operator) {
-    console.log(operator(a,b));
+    let product = `${operator(a,b)}`;
+    console.log(product);
+
     return operator(a, b);
 }
 
-// operate(5,20, operators["add"]);
-// operate(5,20, operators.subtract);
-// operate(5,20, operators.multiply); 
-// operate(5,20, operators.divide); 
 const numberButtons = document.querySelectorAll('.number');
 
 function updateNumberDisplay() {
-
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
             // after operator being clicked
@@ -50,57 +47,86 @@ function updateNumberDisplay() {
 const numberDisplay = document.querySelector('.number-display');
 const operatorButtons = document.querySelectorAll('.operator');
 
-// input number
-// if operator is being clicked
-                                        // store number in variable 1 /
-                                        // if input different number /
-                                            // reset number display /
-                                            // update number display /
-                                            // toggle off operator /
-                                        // if operator is being clicked again
-                                            // store number in variable 2 /
-                                                // proceed the operation
-                                                // update number display
-// if = is being pressed
-    // store number in variable 2
-        // proceed the operation
-        // update number display
-// 
-
 let numbers = [];
-let operatorStatus = false;
 let currentOperator;
+let currentEqualStatus = false;
+let operatorStatus = false;
+let operatorStat = {
+    add: false,
+    subtract: false,
+    multiply: false,
+    divide: false,
+};
 
-operatorButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        numbers.push(+numberDisplay.textContent);
-        console.log(numbers);
 
-        // toggle operator mode
-        operatorStatus = true;
-        operatorButtons.forEach(btn => btn.classList.remove('activate'));
-        button.classList.add('activate');
-        console.log(operatorStatus);
-        currentOperator = button.value;
-        console.log(currentOperator);
-
-        if (numbers.length > 1) {
-            let a = numbers.at(-2);
-            let b = numbers.at(-1);
-            console.log(a);
-            console.log(b);
-            let product = operate(a, b, operators[button.value]);
-            numbers.push(product);
-            numberDisplay.textContent = product;
-        }
+function operatorFunctions() {
+    operatorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const currentNumber = +numberDisplay.textContent;
+            const value = button.value;
+    
+            if (value !== 'equal') {
+                if (!operatorStatus && !currentEqualStatus) {
+                    numbers.push(currentNumber);
+                } else if (operatorStatus && numbers.length == 1) {
+                    numbers.push(currentNumber);
+                }
+                
+                if (numbers.length == 2) {
+                    calcProduct(currentOperator);
+                    console.log(`product: ${numbers}`);
+                    operatorStatus = false;
+                }
+    
+                toggleOperator(value);
+                currentOperator = value;
+                operatorStatus = true;
+                currentEqualStatus = false;
+            } else {
+                currentEqualStatus = true;
+                if (numbers.length == 0) return;
+                if (!operatorStatus) {
+                    numbers.push(currentNumber);
+                    calcProduct(currentOperator);
+                } 
+                if (numbers.length === 2 && currentOperator) {
+                    calcProduct(currentOperator);
+                    operatorStatus = false;
+                }
+            }
+        });
     });
-});
+}
 
-let test = {
-    add:        false,
-    subtract:   false,
-    multiply:   false,
-    divide:     false,
-} 
+function calcProduct(operator) {
+    let a = numbers.at(-2);
+    let b = numbers.at(-1);
+    let product = operate(a, b, operators[operator]);
+    
+    // Update number display
+    numberDisplay.textContent = product;
+    numbers = [product];
+}
+
+function toggleOperator(operator) {
+    // turn off all operator 
+    for (let key in operatorStat) {
+        operatorStat[key] = false;
+    }
+    // activate current operator
+    operatorStat[operator] = true;
+}
+
+const resetButton = document.querySelector('.reset');
+resetButton.addEventListener('click', () => reset());
+
+function reset() {
+    numbers = [];
+    numberDisplay.textContent = '0';
+    operatorStatus = false;
+    currentEqualStatus = false;
+}
+
 
 updateNumberDisplay();
+operatorFunctions();
