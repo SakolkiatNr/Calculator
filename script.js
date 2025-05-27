@@ -5,11 +5,15 @@ const operators = {
     divide:     function(a, b) { return a / b ;},
 }
 
+let displayLength = 5;
 function operate(a, b, operator) {
     let product = `${operator(a,b)}`;
-    console.log(product);
-
-    return operator(a, b);
+    if (product.length > displayLength) {
+        product = product.slice(0, displayLength);
+    }
+    // console.log(product);
+    return product;
+    // return operator(a, b);
 }
 
 const numberButtons = document.querySelectorAll('.number');
