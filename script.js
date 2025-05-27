@@ -8,6 +8,7 @@ const operators = {
 let displayLength = 5;
 function operate(a, b, operator) {
     let product = `${operator(a,b)}`;
+    // prevent display overflow 
     if (product.length > displayLength) {
         product = product.slice(0, displayLength);
     }
@@ -21,6 +22,9 @@ const numberButtons = document.querySelectorAll('.number');
 function updateNumberDisplay() {
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
+            // prevent number overflow on user input
+            if (numberDisplay.textContent.length >= displayLength) return;
+            
             // after operator being clicked
             if (operatorStatus) {
                 numberDisplay.textContent = "";
