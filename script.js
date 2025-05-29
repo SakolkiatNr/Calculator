@@ -112,7 +112,6 @@ function operatorFunctions() {
                     operatorStatus = false;
                 }
             }
-            console.log(numbers);
         });
     });
 }
@@ -152,6 +151,16 @@ function reset() {
     currentEqualStatus = false;
 }
 
+const deleteButton = document.querySelector('.delete');
+deleteButton.addEventListener('click', () => {
+    if (numberDisplay.textContent.length >= 1) {
+        let currentDisplay = numberDisplay.textContent;
+        numberDisplay.textContent = currentDisplay.slice(0, -1);
+    }
+    if (numberDisplay.textContent.length == 0) {
+        numberDisplay.textContent = '0';
+    }
+});
 
 updateNumberDisplay();
 operatorFunctions();
