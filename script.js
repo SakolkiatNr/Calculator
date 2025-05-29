@@ -4,8 +4,9 @@ const operators = {
     multiply:   function(a, b) { return a * b ;},
     divide:     function(a, b) { return a / b ;},
 }
-
+// set number display length
 let displayLength = 15;
+
 function operate(a, b, operator) {
     let product = `${operator(a,b)}`;
     // prevent display overflow 
@@ -152,15 +153,35 @@ function reset() {
 }
 
 const deleteButton = document.querySelector('.delete');
-deleteButton.addEventListener('click', () => {
-    if (numberDisplay.textContent.length >= 1) {
+deleteButton.addEventListener('click', deleteNumber);
+
+function deleteNumber() {
+    // delete number on display
+   if (numberDisplay.textContent.length >= 1) {
         let currentDisplay = numberDisplay.textContent;
         numberDisplay.textContent = currentDisplay.slice(0, -1);
     }
     if (numberDisplay.textContent.length == 0) {
         numberDisplay.textContent = '0';
+    } 
+}
+
+const negativeButton = document.querySelector('.negative')
+negativeButton.addEventListener('click', toggleNegative);
+
+function toggleNegative() {
+    let currentDisplay = numberDisplay.textContent;
+
+    if (numberDisplay.textContent == '0') return;
+    // if number not more or less than 0
+    if (!/[1-9]/.test(numberDisplay.textContent)) return;
+
+    if (numberDisplay.textContent.at(0) == '-') {
+        numberDisplay.textContent = `${currentDisplay.slice(1)}`;
+        return;
     }
-});
+    numberDisplay.textContent = `-${currentDisplay}`;
+}
 
 updateNumberDisplay();
 operatorFunctions();
