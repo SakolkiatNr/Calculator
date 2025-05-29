@@ -5,7 +5,7 @@ const operators = {
     divide:     function(a, b) { return a / b ;},
 }
 
-let displayLength = 5;
+let displayLength = 15;
 function operate(a, b, operator) {
     let product = `${operator(a,b)}`;
     // prevent display overflow 
@@ -13,7 +13,7 @@ function operate(a, b, operator) {
         product = product.slice(0, displayLength);
     }
     // console.log(product);
-    return product;
+    return +product;
     // return operator(a, b);
 }
 
@@ -22,18 +22,28 @@ const numberButtons = document.querySelectorAll('.number');
 function updateNumberDisplay() {
     numberButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            // prevent number overflow on user input
-            if (numberDisplay.textContent.length >= displayLength) return;
             
             // after operator being clicked
             if (operatorStatus) {
                 numberDisplay.textContent = "";
                 operatorStatus = false;
                 if (button.value == '.') {
-                   numberDisplay.textContent = '0.'; 
-                   return;
+                    numberDisplay.textContent = '0.'; 
+                    return;
                 } 
             }
+            // after equal being press
+            if (currentEqualStatus) {
+                numberDisplay.textContent = "";
+                currentEqualStatus = false;
+                if (button.value == '.') {
+                        numberDisplay.textContent = '0.'; 
+                        return;
+                }  
+            }
+            // prevent number overflow on user input
+            if (numberDisplay.textContent.length > displayLength - 1) return;
+            
             // If default number already 0
             if (button.value == '0') {
                 if (numberDisplay.textContent == '0') return;
@@ -93,15 +103,16 @@ function operatorFunctions() {
             } else {
                 currentEqualStatus = true;
                 if (numbers.length == 0) return;
-                if (!operatorStatus) {
+                if (!operatorStatus && numbers.length == 1) {
                     numbers.push(currentNumber);
-                    calcProduct(currentOperator);
+                    // calcProduct(currentOperator);
                 } 
                 if (numbers.length === 2 && currentOperator) {
                     calcProduct(currentOperator);
                     operatorStatus = false;
                 }
             }
+            console.log(numbers);
         });
     });
 }
@@ -111,6 +122,12 @@ function calcProduct(operator) {
     let b = numbers.at(-1);
     let product = operate(a, b, operators[operator]);
     
+    if (b == 0) {
+        numberDisplay.textContent = 'lmao';
+        numbers = [];
+        operatorStatus = false;
+        return;
+    }
     // Update number display
     numberDisplay.textContent = product;
     numbers = [product];
