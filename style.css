@@ -1,30 +1,69 @@
-.container {
+body {
+    font-family: 'Courier New', Courier, monospace;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
+.container {
+    width: 32%;
+    margin-top: 100px;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 8px;
+    background-color: rgb(162, 164, 160);
+}
+
+.logo {
+    font-family: ;
+    font-size: 24px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin: 0px 0px 12px 18px;
+
+    
+}
 /* <---------- Display ----------> */
 
 .display {
     background-color: black;
+    width: calc(86px + 258px);
+    height: 70px;
+    padding-top: 30px;
+    padding-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+    border-radius: 8px;
 }
 
 .number-display {
-    color: red;
-    font-size: 100px;
+    color: rgb(248, 63, 1);
+    font-size: 48px;
+    padding: 12px;
+    text-shadow: 0px 0px 8px red;
+    letter-spacing: 1px;
 }
 
 
 
 
 /* <---------- Buttons ----------> */
+.buttons {
+    margin: 24px 0px;
+    display: flex;
+    flex-direction: row;
+}
 .buttons-container {
     /* background-color: yellow; */
     display: flex; 
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
     /* <---------- Numbers ----------> */
 .number-buttons,
@@ -49,7 +88,7 @@
 }
 
 button {
-    font-family: 'Segoe UI', monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 28px;
     font-weight: bold;
 
@@ -63,7 +102,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(52, 255, 52);
+    background-color: rgb(151, 150, 150);
 }
 .operator {
     background-color: #3a3a3a;

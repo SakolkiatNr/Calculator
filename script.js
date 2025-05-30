@@ -5,7 +5,7 @@ const operators = {
     divide:     function(a, b) { return a / b ;},
 }
 // set number display length
-let displayLength = 15;
+let displayLength = 10;
 
 function operate(a, b, operator) {
     let product = `${operator(a,b)}`;
@@ -101,6 +101,7 @@ function operatorFunctions() {
                 currentOperator = value;
                 operatorStatus = true;
                 currentEqualStatus = false;
+                console.log(numbers);
             } else {
                 currentEqualStatus = true;
                 if (numbers.length == 0) return;
@@ -122,7 +123,7 @@ function calcProduct(operator) {
     let b = numbers.at(-1);
     let product = operate(a, b, operators[operator]);
     
-    if (b == 0) {
+    if (b == 0 && operator == 'divide') {
         numberDisplay.textContent = 'lmao';
         numbers = [];
         operatorStatus = false;
