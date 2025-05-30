@@ -5,7 +5,7 @@ const operators = {
     divide:     function(a, b) { return a / b ;},
 }
 // set number display length
-let displayLength = 10;
+const displayLength = 12;
 
 function operate(a, b, operator) {
     let product = `${operator(a,b)}`;

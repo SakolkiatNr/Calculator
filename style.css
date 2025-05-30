@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+@font-face {
+    font-family: ds-dgii;
+    src: url(/assets/fonts/DS-DIGII.TTF);
+}
+
 body {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
+    background-color: rgb(25, 25, 25);
 }
 
 .container {
@@ -17,7 +25,7 @@ body {
 }
 
 .logo {
-    font-family: ;
+    font-family: 'Michroma', sans-serif;
     font-size: 24px;
     font-weight: bold;
     align-self: flex-start;
@@ -42,6 +50,7 @@ body {
 }
 
 .number-display {
+    font-family: 'ds-dgii','Courier New', Courier, monospace;
     color: rgb(248, 63, 1);
     font-size: 48px;
     padding: 12px;
@@ -88,9 +97,8 @@ body {
 }
 
 button {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 28px;
-    font-weight: bold;
+    font-family: 'Michroma','Courier New', Courier, monospace;
+    font-size: 20px;
 
     width: 80px;
     height: 60px;
