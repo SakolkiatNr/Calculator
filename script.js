@@ -92,7 +92,7 @@ function operatorFunctions() {
                 } else if (operatorStatus && numbers.length == 1) {
                     numbers.push(currentNumber);
                 }
-
+                
                 if (currentEqualStatus) {
                    expressionDisplay.textContent = `${numbers[0]} ${button.textContent}`; 
                 }
@@ -191,6 +191,36 @@ function toggleNegative() {
     }
     numberDisplay.textContent = `-${currentDisplay}`;
 }
+
+// Keyboard feature
+document.addEventListener('keypress', handleKeyPress);
+
+function handleKeyPress(e) {
+    const key = e.key;
+    console.log(key);
+        
+        if (key >= 0 && key <= 9) {
+            const numButton = document.querySelector(`button.number[value="${key}"]`);
+            if (numButton) numButton.click();
+        }
+
+        if (key === '+') operatorClick('add');
+        if (key === '-') operatorClick('subtract');
+        if (key === '*') operatorClick('multiply');
+        if (key === '/') operatorClick('divide');
+        if (key === 'Enter' || key === '=') operatorClick('equal');
+
+        if (key === 'r') {
+            document.querySelector('.reset').click();
+        }
+
+}
+
+function operatorClick(operator) {
+    const opButton = document.querySelector(`button.operator[value="${operator}"]`);
+    if (opButton) opButton.click();
+}
+
 
 updateNumberDisplay();
 operatorFunctions();
