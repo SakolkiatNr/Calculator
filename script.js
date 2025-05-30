@@ -78,7 +78,6 @@ let operatorStat = {
     divide: false,
 };
 
-
 function operatorFunctions() {
     operatorButtons.forEach(button => {
         button.addEventListener('click', () => {
