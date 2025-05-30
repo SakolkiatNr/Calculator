@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    width: 32%;
+    width: 380px;
     margin-top: 100px;
     padding-top: 25px;
     display: flex;
@@ -43,23 +43,27 @@ body {
     padding-bottom: 12px;
 
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: flex-end;
     
     border-radius: 8px;
 }
 
-.number-display {
+.number-display,
+.expression {
     font-family: 'ds-dgii','Courier New', Courier, monospace;
     color: rgb(248, 63, 1);
     font-size: 48px;
-    padding: 12px;
+    padding-right: 12px;
     text-shadow: 0px 0px 8px red;
     letter-spacing: 1px;
 }
-
-
-
+.expression {
+    /* padding: 0px; */
+    margin: 0px;
+    font-size: 24px;
+}
 
 /* <---------- Buttons ----------> */
 .buttons {

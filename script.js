@@ -63,6 +63,7 @@ function updateNumberDisplay() {
     });
 }
 
+const expressionDisplay = document.querySelector('.expression');
 const numberDisplay = document.querySelector('.number-display');
 const operatorButtons = document.querySelectorAll('.operator');
 
@@ -87,8 +88,13 @@ function operatorFunctions() {
             if (value !== 'equal') {
                 if (!operatorStatus && !currentEqualStatus) {
                     numbers.push(currentNumber);
+                    expressionDisplay.textContent = `${currentNumber} ${button.textContent}`
                 } else if (operatorStatus && numbers.length == 1) {
                     numbers.push(currentNumber);
+                }
+
+                if (currentEqualStatus) {
+                   expressionDisplay.textContent = `${numbers[0]} ${button.textContent}`; 
                 }
                 
                 if (numbers.length == 2) {
@@ -111,6 +117,7 @@ function operatorFunctions() {
                 } 
                 if (numbers.length === 2 && currentOperator) {
                     calcProduct(currentOperator);
+                    expressionDisplay.textContent += ` ${currentNumber} =`; 
                     operatorStatus = false;
                 }
             }
@@ -149,6 +156,7 @@ resetButton.addEventListener('click', () => reset());
 function reset() {
     numbers = [];
     numberDisplay.textContent = '0';
+    expressionDisplay.textContent = '';
     operatorStatus = false;
     currentEqualStatus = false;
 }
