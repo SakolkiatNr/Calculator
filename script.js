@@ -199,10 +199,11 @@ function handleKeyPress(e) {
     const key = e.key;
     console.log(key);
         
-        if (key >= 0 && key <= 9) {
+        if ((key >= 0 && key <= 9) ||
+             key === '.') {
             const numButton = document.querySelector(`button.number[value="${key}"]`);
             if (numButton) numButton.click();
-        }
+        } 
 
         if (key === '+') operatorClick('add');
         if (key === '-') operatorClick('subtract');
@@ -220,7 +221,6 @@ function operatorClick(operator) {
     const opButton = document.querySelector(`button.operator[value="${operator}"]`);
     if (opButton) opButton.click();
 }
-
 
 updateNumberDisplay();
 operatorFunctions();
