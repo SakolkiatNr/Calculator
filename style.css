@@ -1,24 +1,14 @@
-.buttons-container {
-    display: flex; 
-    flex-direction: row;
-}
-.number-buttons {
+.container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
-.operator-buttons {
-    display: flex;
-    flex-direction: column;
-}
 
-button {
-    padding: 12px;
-    width: 48px;
-    height: 48px;
-}
+/* <---------- Display ----------> */
 
 .display {
+    background-color: black;
 }
 
 .number-display {
@@ -26,6 +16,61 @@ button {
     font-size: 100px;
 }
 
-.activate {
-    background-color: greenyellow;
+
+
+
+/* <---------- Buttons ----------> */
+.buttons-container {
+    /* background-color: yellow; */
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
 }
+    /* <---------- Numbers ----------> */
+.number-buttons,
+.operator-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.number-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bottom,
+.option-row {
+    display: flex;
+}
+.two-width {
+    /* 0 button */
+    width: 164px;
+}
+
+button {
+    font-family: 'Segoe UI', monospace;
+    font-size: 28px;
+    font-weight: bold;
+
+    width: 80px;
+    height: 60px;
+    margin: 3px 3px;
+
+    border: 2px solid black;
+    border-radius: 6px;
+    box-shadow: 2px 2px #3a3a3a;
+}
+
+button:hover {
+    background-color: rgb(52, 255, 52);
+}
+.operator {
+    background-color: #3a3a3a;
+    color: whitesmoke;
+}
+.option {
+    background-color: rgb(255, 91, 41);
+}
+
+
