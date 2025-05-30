@@ -107,10 +107,17 @@ button {
     border: 2px solid black;
     border-radius: 6px;
     box-shadow: 2px 2px #3a3a3a;
+    transition: all 0.2 ease;
 }
 
 button:hover {
     background-color: rgb(151, 150, 150);
+    transform: translateY(1px);
+}
+
+button:active{
+    box-shadow: inset 1px 1px 1px black;
+    transform: translateY(2px);
 }
 .operator {
     background-color: #3a3a3a;
